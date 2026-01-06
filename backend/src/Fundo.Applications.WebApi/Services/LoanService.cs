@@ -62,7 +62,7 @@ namespace Fundo.Applications.WebApi.Services
             return loans;
         }
 
-        public async Task<Loan?> GetByIdAsync(Guid id)
+        public async Task<Loan> GetByIdAsync(Guid id)
         {
             return await _context.Loans.Where(loan => loan.Id == id).FirstOrDefaultAsync();
         }

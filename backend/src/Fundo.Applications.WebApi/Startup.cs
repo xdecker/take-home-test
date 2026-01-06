@@ -30,6 +30,9 @@ namespace Fundo.Applications.WebApi
             );
 
             services.AddScoped<LoanService>();
+
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,6 +46,13 @@ namespace Fundo.Applications.WebApi
 
 
             app.UseMiddleware<ExceptionMiddleware>();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Loan API v1");
+                c.RoutePrefix = string.Empty;
+            });
+
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
