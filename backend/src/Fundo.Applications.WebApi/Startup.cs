@@ -37,22 +37,24 @@ namespace Fundo.Applications.WebApi
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //seed
-            using (var scope = app.ApplicationServices.CreateScope())
+            if (env.IsDevelopment())
             {
-                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                DbSeeder.Seed(context);
+                //seed
+                using (var scope = app.ApplicationServices.CreateScope())
+                {
+                    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                    DbSeeder.Seed(context);
+                }
+
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Loan API v1");
+                    c.RoutePrefix = string.Empty;
+                });
             }
 
-
             app.UseMiddleware<ExceptionMiddleware>();
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Loan API v1");
-                c.RoutePrefix = string.Empty;
-            });
-
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
