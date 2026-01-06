@@ -20,7 +20,20 @@ namespace Fundo.Applications.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowApi",
+                    builder =>
+                    {
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader();
+                    });
+            });
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -39,12 +52,16 @@ namespace Fundo.Applications.WebApi
         {
             if (env.IsDevelopment())
             {
-                //seed
-                using (var scope = app.ApplicationServices.CreateScope())
+                if (Configuration.GetValue<bool>("RunSeed"))
                 {
-                    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-                    DbSeeder.Seed(context);
+                    //seed
+                    using (var scope = app.ApplicationServices.CreateScope())
+                    {
+                        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                        DbSeeder.Seed(context);
+                    }
                 }
+                
 
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
@@ -56,6 +73,7 @@ namespace Fundo.Applications.WebApi
 
             app.UseMiddleware<ExceptionMiddleware>();
             app.UseRouting();
+            app.UseCors("AllowApi");
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
         }

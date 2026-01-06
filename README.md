@@ -1,83 +1,67 @@
-# **Take-Home Test: Backend-Focused Full-Stack Developer (.NET C# & Angular)**
+# Loan Management System - Technical Test
 
-## **Objective**
+This repository contains a simple Loan Management System built as a part of a technical test
 
-This take-home test evaluates your ability to develop and integrate a .NET Core (C#) backend with an Angular frontend, focusing on API design, database integration, and basic DevOps practices.
+## Tech Stack
+- Backend: .NET 6 / ASP.NET Core Web API
+- Database: Sql Server
+- Frontend: Angular
+- Testing: xUnit (Unit + Integration)
+- API Documentation: Swagger OpenAPI
 
-## **Instructions**
+## BACKEND
 
-1.  **Fork the provided repository** before starting the implementation.
-2.  Implement the requested features in your forked repository.
-3.  Once you have completed the implementation, **send the link** to your forked repository via email for review.
+# How to Run
 
-## **Task**
+### Prerequisites
+- .NET 6 SDK
+- SQL Server (local or Docker)
 
-You will build a simple **Loan Management System** with a **.NET Core backend (C#)** exposing RESTful APIs and a **basic Angular frontend** consuming these APIs.
 
----
+## Database
 
-## **Requirements**
+The application uses SQL Server with Entity Framework Core.
 
-### **1. Backend (API) - .NET Core**
+- Database is created automatically using EF Core migrations.
+- A simple seed runs on startup to populate initial data for testing purposes.
 
-* Create a **RESTful API** in .NET Core to handle **loan applications**.
-* Implement the following endpoints:
-    * `POST /loans` → Create a new loan.
-    * `GET /loans/{id}` → Retrieve loan details.
-    * `GET /loans` → List all loans.
-    * `POST /loans/{id}/payment` → Deduct from `currentBalance`.
-* Loan example (feel free to improve it):
 
-    ```json
-    {
-        "amount": 1500.00, // Amount requested
-        "currentBalance": 500.00, // Remaining balance
-        "applicantName": "Maria Silva", // User name
-        "status": "active" // Status can be active or paid
-    }
-    ```
+## Running the Backend
 
-* Use **Entity Framework Core** with **SQL Server**.
-* Create seed data to populate the loans (the frontend will consume this).
-* Write **unit/integration tests for the API** (xUnit or NUnit).
-* **Dockerize** the backend and create a **Docker Compose** file.
-* Create a README with setup instructions.
+To build the backend, navigate to the `src` folder and run:  
+```sh
+dotnet build
+```
 
-### **2. Frontend - Angular (Simplified UI)**  
+To run all tests:  
+```sh
+dotnet test
+```
 
-Develop a **lightweight Angular app** to interact with the backend
+To start the main API:  
+```sh
+cd Fundo.Applications.WebApi  
+dotnet run
+```
 
-#### **Features:**  
-- A **table** to display a list of existing loans.  
+The following endpoint should return **200 OK**:  
+```http
+GET -> https://localhost:5001/loan
+```
+**Swagger is enabled in Development environment and configured as the default landing page.**
 
-#### **Mockup:**  
-[View Mockup](https://kzmgtjqt0vx63yji8h9l.lite.vusercontent.net/)  
-(*The design doesn’t need to be an exact replica of the mockup—it serves as a reference. Aim to keep it as close as possible.*)  
 
----
+## Running with Docker
 
-## **Bonus (Optional, Not Required)**
+From the backend folder:
 
-* **Improve error handling and logging** with structured logs.
-* Implement **authentication**.
-* Create a **GitHub Actions** pipeline for building and testing the backend.
+```bash
+docker-compose up --build
+```
 
----
+## Tests
+### Unit Tests
+Unit test covers business logic on LoanService
 
-## **Evaluation Criteria**
-
-✔ **Code quality** (clean architecture, modularization, best practices).
-
-✔ **Functionality** (the API and frontend should work as expected).
-
-✔ **Security considerations** (authentication, validation, secure API handling).
-
-✔ **Testing coverage** (unit tests for critical backend functions).
-
-✔ **Basic DevOps implementation** (Docker for backend).
-
----
-
-## **Additional Information**
-
-Candidates are encouraged to include a `README.md` file in their repository detailing their implementation approach, any challenges they faced, features they couldn't complete, and any improvements they would make given more time. Ideally, the implementation should be completed within **two days** of starting the test.
+# Integration tests
+A basic integration test is included to validate API availability
