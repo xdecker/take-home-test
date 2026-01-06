@@ -34,8 +34,15 @@ namespace Fundo.Applications.WebApi
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseMiddleware<ExceptionMiddleware>();
+            //seed
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                DbSeeder.Seed(context);
+            }
 
+
+            app.UseMiddleware<ExceptionMiddleware>();
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
