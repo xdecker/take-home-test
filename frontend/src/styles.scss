@@ -1,11 +1,135 @@
-/* You can add global styles to this file, and also import other style files */
 
-html,
-body {
-  height: 100%;
+/* Toast container colors */
+.mat-mdc-snack-bar-container {
+  border-radius: 4px;
+  padding: 12px 16px;
+  font-weight: 500;
+  font-size: 14px;
 }
 
-body {
-  margin: 0;
-  font-family: "Roboto", sans-serif;
+.toast-success { color: #2e7d32; }
+.toast-error   { color: #d32f2f; }
+.toast-info    { color: #1976d2; }
+.toast-loading { color: #ffa000; font-style: italic; }
+
+/* Acciones (botón cerrar) */
+.mat-mdc-snack-bar-action {
+  color: inherit;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 0 8px;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Desactivar ripple */
+.mat-mdc-snack-bar-action .mat-mdc-button-persistent-ripple,
+.mat-mdc-snack-bar-action .mat-ripple {
+  display: none !important;
+}
+
+/* Hover limpio */
+.mat-mdc-snack-bar-action:hover {
+  background: transparent !important;
+  opacity: 1;
+  cursor: pointer;
+}
+
+:host {
+  display: block;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;  // espacio entre inputs
+  min-width: 300px;
+  max-width: 500px; // modal más ancho
+}
+
+.full-width {
+  width: 100%;
+}
+
+.dialog-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  button {
+    min-width: 100px;
+  }
+
+  button[mat-stroked-button] {
+    color: #1976d2;
+    border-color: #1976d2;
+    border-radius: 8px;
+
+    &:hover{
+      filter: brightness(0.9); /* oscurece un poquito al pasar el mouse */
+  cursor: pointer;
+    }
+  }
+
+  button[mat-raised-button] {
+    background-color: #1976d2;
+    border-radius: 8px;
+    color: white;
+
+    &:disabled {
+      background-color: #90caf9;
+      color: #eceff1;
+    }
+
+    &:hover{
+      filter: brightness(0.9); /* oscurece un poquito al pasar el mouse */
+  cursor: pointer;
+    }
+  }
+
+
+}
+
+mat-form-field {
+  // opcional, para inputs con más altura y label más legible
+  .mat-mdc-form-field-wrapper {
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  input.mat-input-element {
+    padding: 12px 14px;
+  }
+}
+
+
+.mat-dialog-container {
+  border-radius: 12px; // redondear todo el modal
+}
+
+mat-raised-button, mat-stroked-button {
+  border-radius: 8px; // redondear botones
+}
+
+.loans--container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* espacio entre elementos */
+}
+
+
+
+
+.mat-mdc-paginator-page-size-select .mat-mdc-select-trigger {
+  padding-left: 8px;  /* espacio interno */
+}
+
+.mat-mdc-paginator-page-size-select .mat-mdc-select-value-text {
+  display: flex;
+  align-items: center; /* centra el número verticalmente */
+}
+
+.mat-mdc-paginator-page-size-select .mat-mdc-select-arrow-wrapper {
+  margin-right: 4px; /* un poquitín de separación */
 }
