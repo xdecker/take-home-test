@@ -1,0 +1,54 @@
+:host {
+    display: block;
+  }
+  
+  .dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;  // espacio entre inputs
+    min-width: 300px;
+    max-width: 500px; // modal más ancho
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .dialog-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  
+    button {
+      min-width: 100px;
+    }
+  
+    button[mat-stroked-button] {
+      color: #1976d2;
+      border-color: #1976d2;
+    }
+  
+    button[mat-raised-button] {
+      background-color: #1976d2;
+      color: white;
+  
+      &:disabled {
+        background-color: #90caf9;
+        color: #eceff1;
+      }
+    }
+  }
+  
+  mat-form-field {
+    // opcional, para inputs con más altura y label más legible
+    .mat-mdc-form-field-wrapper {
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+  
+    input.mat-input-element {
+      padding: 12px 14px;
+    }
+  }
+  

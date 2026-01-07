@@ -1,3 +1,4 @@
+
 .loans {
   display: flex;
   flex-direction: column;
@@ -30,3 +31,33 @@
     }
   }
 }
+
+
+.loans--container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* espacio entre elementos */
+}
+
+.create-loan-btn {
+  align-self: flex-end; /* lo pone a la derecha */
+  border-radius: 8px; /* bordes redondeados */
+  padding: 8px 24px; /* tamaño cómodo */
+  font-weight: 600;
+  background-color: #0a549e;
+  color: #dee5ed;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* leve sombra */
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    filter: brightness(0.9); /* hover sutil */
+    cursor: pointer;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+
