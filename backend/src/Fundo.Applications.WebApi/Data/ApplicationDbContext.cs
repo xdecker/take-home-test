@@ -16,6 +16,14 @@ namespace Fundo.Applications.WebApi.Data
             modelBuilder.Entity<Loan>()
                 .HasKey(loan => loan.Id);
 
+            modelBuilder.Entity<Loan>()
+                .Property(loan => loan.Amount)
+                .HasPrecision(18, 2);
+
+            modelBuilder.Entity<Loan>()
+                .Property(loan => loan.CurrentBalance)
+                .HasPrecision(18, 2);
+
             //omit by default deleted
             modelBuilder.Entity<Loan>()
                 .HasQueryFilter(loan => loan.Active);

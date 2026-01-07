@@ -45,7 +45,7 @@ project.assets.json
 *.p12
 
 # Entity Framework Migrations
-migrations/
+#migrations/
 
 # --- ANGULAR / TypeScript ---
 node_modules/
