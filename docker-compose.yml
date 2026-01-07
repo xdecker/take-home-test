@@ -17,7 +17,7 @@ services:
       - sqlserver
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      RunSeed: "false"
-      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=FundoDB;User=sa;Password=Fundo@12345;Trusted_Connection=true;TrustServerCertificate=True"
+      RunSeed: "true"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=FundoDB;User=sa;Password=Fundo@12345;TrustServerCertificate=True;Encrypt=False"
     ports:
       - "5001:80"
